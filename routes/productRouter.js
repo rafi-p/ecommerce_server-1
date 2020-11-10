@@ -6,6 +6,8 @@ router.post('/', authorization, Controller.productAdd)
 
 router.get('/', Controller.productList)
 
+router.get('/:id', authorization, Controller.productId)
+
 router.put('/:id', authorization, Controller.productPut)
 
 router.delete('/:id', authorization, Controller.delete)

@@ -19,6 +19,10 @@ function errorHandler (err, req, res, next) {
             status = 401,
             msg = 'Not authorized'
             break;
+        case 'Not Found':
+            status = 404,
+            msg = 'Not Found'
+            break;
         case 'Invalid Input':
             status = 401,
             msg = 'Wrong email/password'
