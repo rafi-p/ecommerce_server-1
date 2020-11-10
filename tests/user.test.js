@@ -1,5 +1,34 @@
 const request = require('supertest')
 const app = require('../app')
+const { User } = require('../models/index')
+const { sequelize } = require('../models/index')
+const { queryInterface } = sequelize
+
+beforeAll((done) => {
+    const inputUser = {
+        email: 'admin@mail.com',
+        password: '1234',
+        role: 'admin'
+    }
+    User.create(inputUser)
+        .then(res => {
+            console.log('admin account created')
+            done()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
+afterAll((done) => {
+    queryInterface.bulkDelete('Users')
+    .then(() => {
+        done()
+    })
+    .catch(err => {
+        done()
+    })
+})
 
 describe('Test Login POST /login', () => {
     it('test login success', (done) => {

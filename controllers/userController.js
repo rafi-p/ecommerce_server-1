@@ -20,7 +20,7 @@ class UserController {
                         id: user.id,
                         email: user.email
                     })
-                    console.log(access_token)
+                    // console.log(access_token)
                     res.status(200).json({access_token})
                 }
             }

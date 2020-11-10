@@ -1,18 +1,65 @@
 const request = require('supertest')
 const app = require('../app')
-const { signToken, verifyToken } = require('../helpers/jwt')
+const { signToken } = require('../helpers/jwt')
 const { User } = require('../models/index')
 const { sequelize } = require('../models/index')
 const { queryInterface } = sequelize
 
-let access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTYwNDkyNTI5OX0.LsEEBTCRZeREf_s20ow-4H8k3TMIcfbTMzFPIP3yOK8'
-let customer_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJkb3JAbWFpbC5jb20iLCJpYXQiOjE2MDQ5Mjg0ODZ9.BEA94wOuOS-PBHTZut3e49yh4R7oLfK0xFbNtGNK2Ic'
+let access_token;
+let customer_token;
 let id;
 
+beforeAll((done) => {
+    const inputUser = {
+        email: 'admin@mail.com',
+        password: '1234',
+        role: 'admin'
+    }
+    const inputCustomer = {
+        email: 'dor@mail.com',
+        password: '12345'
+    }
+    User.create(inputUser)
+        .then(res => {
+            access_token = signToken({
+                id: res.dataValues.id,
+                email: res.dataValues.email
+            })
+            console.log('admin account created')
+            done()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
+
+    User.create(inputCustomer)
+        .then(res => {
+            console.log('customer account created')
+            customer_token = signToken({
+                id: res.dataValues.id,
+                email: res.dataValues.email
+            })
+            done()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+})
 
 
 afterAll((done) => {
     queryInterface.bulkDelete('Products')
+    .then(() => {
+        done()
+    })
+    .catch(err => {
+        done()
+    })
+
+    queryInterface.bulkDelete('Users')
     .then(() => {
         done()
     })
