@@ -11,7 +11,7 @@ class ProductController {
                 userId: req.loggedInUser.id
             }
             const newProduct = await Product.create(inputProduct)
-            
+
             res.status(201).json(newProduct)
         } catch (err) {
             next(err)
@@ -19,7 +19,7 @@ class ProductController {
     }
     static async productList(req, res, next) {
         try {
-            const productList = await Product.findAll({order: [['updatedAt', 'ASC']], include: [User]})
+            const productList = await Product.findAll({order: [['id', 'ASC']], include: [User]})
             res.status(200).json({productList, loggedInUser: req.loggedInUser.email})
 
         } catch (error) {
@@ -36,7 +36,7 @@ class ProductController {
             } else {
                 throw { name: 'Not Found'}
             }
-            
+
         } catch (error) {
             next(error)
         }
@@ -54,11 +54,11 @@ class ProductController {
             const updateProduct = await Product.update(dataProduct, {where: {id: id}, returning: true} )
 
             if(updateProduct[1][0]) {
-                res.status(200).json(updateProduct[1][0]) 
+                res.status(200).json(updateProduct[1][0])
             } else {
                 throw { name: 'Not Found'}
             }
-            
+
         } catch (error) {
             next(error)
         }
@@ -70,11 +70,11 @@ class ProductController {
             const deleteProduct = await Product.destroy( {where: {id: id}} )
 
             if(deleteProduct) {
-                res.status(200).json({ message: 'Product success to delete' }) 
+                res.status(200).json({ message: 'Product success to delete' })
             } else {
                 throw { name: 'Not Found'}
             }
-            
+
         } catch (error) {
             next(error)
         }

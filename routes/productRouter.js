@@ -6,9 +6,6 @@ router.post('/', authorization, Controller.productAdd)
 
 router.get('/', Controller.productList)
 
-// tes
-///aaaaaaaaaaaaaaa
-
 router.get('/:id', authorization, Controller.productId)
 
 router.put('/:id', authorization, Controller.productPut)

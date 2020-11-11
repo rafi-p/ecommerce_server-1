@@ -24,7 +24,7 @@ class UserController {
                     res.status(200).json({access_token})
                 }
             }
-            
+
         } catch (error) {
             next(error)
         }
@@ -42,14 +42,14 @@ class UserController {
                 email: newUser.email
             })
         } catch (error) {
-            
+
             next(error)
         }
     }
     // static async googleLogin(req, res, next) {
     //     const google_token = req.body.access_token
     //     const client = new OAuth2Client(process.env.CLIENT_ID)
-    //     try {  
+    //     try {
     //         const ticket = await client.verifyIdToken({
     //             idToken: google_token,
     //             audience: process.env.CLIENT_ID
@@ -57,7 +57,7 @@ class UserController {
     //         const payload = ticket.getPayload();
 
     //         const user = await User.findOne({where: {email: payload.email}
-    //         }) 
+    //         })
     //         let newUser;
     //         if(user) {
     //             newUser = user
