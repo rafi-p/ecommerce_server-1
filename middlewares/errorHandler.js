@@ -9,7 +9,7 @@ function errorHandler (err, req, res, next) {
             msg = err.errors.map(el => {
                 return el.message
             }).join(', ');
-            
+
             break;
         case 'Authentication failed':
             status = 401,
@@ -26,6 +26,10 @@ function errorHandler (err, req, res, next) {
         case 'Invalid Input':
             status = 401,
             msg = 'Wrong email/password'
+            break;
+        case 'Max stock reached':
+            status = 401,
+            msg = 'Max stock reached'
             break;
         default:
             status = 500,

@@ -10,9 +10,9 @@
     /products
 
 * **Method:**
-  
+
     `POST`
-    
+
 *  **URL Params**
 
     not needed
@@ -29,7 +29,7 @@
 
   * **Code:** 201 CREATED<br />
     **Content:** `
-    { 
+    {
         "id": 1,
         "name": "Playstation 5",
         "image_url": "https://www.citypng.com/public/uploads/preview/-11591925787cggjhepdvq.png",
@@ -39,7 +39,7 @@
         "updatedAt": "2020-11-10T04:50:25.905Z",
         "createdAt": "2020-11-10T04:50:25.905Z"
     }`
- 
+
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
@@ -50,7 +50,7 @@
         "Price cannot be below zero",
         "Stock is required",
         "Stock cannot be below zero",
-        ] 
+        ]
     }`
 
   OR
@@ -68,7 +68,7 @@
     /products
 
 * **Method:**
-  
+
     `GET`
 
 *  **URL Params**
@@ -123,7 +123,7 @@
     ],
     "loggedInUser": "admin@gmail.com"
 }`
- 
+
 * **Error Response:**
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
@@ -139,13 +139,13 @@
     /products/:id
 
 * **Method:**
-  
+
     `GET`
 
 *  **URL Params**
 
     **Required:**
- 
+
    `id=[integer]`
 
 * **Data Params**
@@ -166,7 +166,7 @@
         "createdAt": "2020-11-10T04:50:25.905Z",
         "updatedAt": "2020-11-10T04:50:25.905Z"
     }`
- 
+
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
@@ -182,13 +182,13 @@
     /products/:id
 
 * **Method:**
-  
+
     `PUT`
 
 *  **URL Params**
 
     **Required:**
- 
+
    `id=[integer]`
 
 * **Data Params**
@@ -212,7 +212,7 @@
         "createdAt": "2020-11-10T04:50:25.905Z",
         "updatedAt": "2020-11-10T04:58:07.638Z"
     }`
- 
+
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
@@ -223,7 +223,7 @@
         "Price cannot be below zero",
         "Stock is required",
         "Stock cannot be below zero",
-        ] 
+        ]
     }`
 
     OR
@@ -240,20 +240,20 @@
 
 **DELETE product**
 ----
-    delete one product 
+    delete one product
 
 * **URL**
 
     /products/:id
 
 * **Method:**
-  
+
     `DELETE`
 
 *  **URL Params**
 
     **Required:**
- 
+
    `id=[integer]`
 
 * **Data Params**
@@ -264,7 +264,7 @@
 
   * **Code:** 200 OK <br />
     **Content:** `{ message: 'product success to delete' }`
- 
+
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
@@ -285,13 +285,13 @@
     /register
 
 * **Method:**
-  
+
     `POST`
 
 *  **URL Params**
 
     **Required:**
- 
+
     not needed
 
 * **Data Params**
@@ -302,12 +302,12 @@
 * **Success Response:**
 
   * **Code:** 201 CREATED <br />
-    **Content:** 
+    **Content:**
     `{
         "id": 14,
         "email": "suma@gmail.com"
     }`
- 
+
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
@@ -328,13 +328,13 @@
     /login
 
 * **Method:**
-  
+
     `POST`
 
 *  **URL Params**
 
     **Required:**
- 
+
     not needed
 
 * **Data Params**
@@ -346,7 +346,7 @@
 
   * **Code:** 200 OK <br />
     **Content:** `access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJkZWRlQGdtYWlsLmNvbSIsImlhdCI6MTYwMzgwOTA3MH0.ZOvOmP8v4sPgbE5sAxM2jeNPNPi9hr-UTllXyYaPw9A`
- 
+
 * **Error Response:**
 
   * **Code:** 401 BAD REQUEST <br />
@@ -367,13 +367,13 @@
     /googleLogin
 
 * **Method:**
-  
+
     `POST`
 
 *  **URL Params**
 
     **Required:**
- 
+
     not needed
 
 * **Data Params**
@@ -385,7 +385,7 @@
 
   * **Code:** 200 OK <br />
     **Content:** `access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJkZWRlQGdtYWlsLmNvbSIsImlhdCI6MTYwMzgwOTA3MH0.ZOvOmP8v4sPgbE5sAxM2jeNPNPi9hr-UTllXyYaPw9A`
- 
+
 * **Error Response:**
 
   * **Code:** 401 BAD REQUEST <br />
@@ -395,3 +395,235 @@
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Server is busy" }`
+
+
+**GET carts**
+----
+    Get all carts
+
+* **URL**
+
+    /carts
+
+* **Method:**
+
+    `GET`
+
+*  **URL Params**
+
+    not needed
+
+* **Data Params**
+
+    not needed
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:** `{
+    "cartList": [
+        {
+            "id": 30,
+            "productId": 30,
+            "userId": 4,
+            "quantity": 1,
+            "status": false,
+            "createdAt": "2020-11-17T13:20:52.631Z",
+            "updatedAt": "2020-11-17T13:20:52.631Z",
+            "Product": {
+                "id": 30,
+                "name": "Playstation 5",
+                "image_url": "https://www.citypng.com/public/uploads/preview/-11591925787cggjhepdvq.png",
+                "price": 5000000,
+                "stock": 10,
+                "userId": 3,
+                "createdAt": "2020-11-17T02:45:46.216Z",
+                "updatedAt": "2020-11-17T02:45:46.216Z"
+            }
+        }
+    ]
+}`
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ error : "Server is busy" }`
+
+
+**CREATE carts**
+----
+    Add one product to carts
+
+* **URL**
+
+    /carts/:id
+
+* **Method:**
+
+    `POST`
+
+*  **URL Params**
+
+    not needed
+
+* **Data Params**
+
+    `productId=[integer]`,
+    `userId=[integer]`,
+    `quantity=[double]`
+
+* **Success Response:**
+
+  * **Code:** 201 CREATED<br />
+    **Content:** `
+    {
+        "id": 30,
+        "productId": 30,
+        "userId": 4,
+        "quantity": 1,
+        "updatedAt": "2020-11-17T13:20:52.631Z",
+        "createdAt": "2020-11-17T13:20:52.631Z",
+        "status": false
+    }`
+
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ error : [
+        "Quantity cannot be below zero"
+        ]
+    }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ error : "Server is busy" }`
+
+
+**DELETE cart**
+----
+    delete one product in cart
+
+* **URL**
+
+    /carts/:id
+
+* **Method:**
+
+    `DELETE`
+
+*  **URL Params**
+
+    **Required:**
+
+   `id=[integer]`
+
+* **Data Params**
+
+    not needed
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:** `{ message: 'Cart product  success to delete' }`
+
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not Found" }`
+
+    OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ error : "Server is busy" }`
+
+
+
+**UPDATE cart**
+----
+    Update quantity of product in cart
+
+* **URL**
+
+    /carts/:id
+
+* **Method:**
+
+    `PUT`
+
+*  **URL Params**
+
+    **Required:**
+
+   `id=[integer]`
+
+* **Data Params**
+
+    `quantity=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:** `
+    {
+        "id": 30,
+        "productId": 30,
+        "userId": 4,
+        "quantity": 5,
+        "status": false,
+        "createdAt": "2020-11-17T13:20:52.631Z",
+        "updatedAt": "2020-11-17T13:31:12.388Z"
+    }`
+
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ error : [
+        "Max stock reached"
+        ]
+    }`
+
+    OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not Found" }`
+
+    OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ error : "Server is busy" }`
+
+
+**PUT carts**
+----
+    Update all product in carts and clear carts
+
+* **URL**
+
+    /carts
+
+* **Method:**
+
+    `PUT`
+
+*  **URL Params**
+
+    not needed
+
+* **Data Params**
+
+    `quantity=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:** `{
+        "message": "Checkout success"
+    }`
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ error : "Server is busy" }`
+
+
