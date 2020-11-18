@@ -627,3 +627,73 @@
     **Content:** `{ error : "Server is busy" }`
 
 
+**GET products**
+----
+    Get all products
+
+* **URL**
+
+    /productList
+
+* **Method:**
+
+    `GET`
+
+*  **URL Params**
+
+    not needed
+
+* **Data Params**
+
+    not needed
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:** `{
+    "productList": [
+        {
+            "id": 1,
+            "name": "Playstation 5",
+            "image_url": "https://www.citypng.com/public/uploads/preview/-11591925787cggjhepdvq.png",
+            "price": 5000000,
+            "stock": 13,
+            "userId": 3,
+            "createdAt": "2020-11-10T04:50:25.905Z",
+            "updatedAt": "2020-11-10T04:50:25.905Z",
+            "User": {
+                "id": 3,
+                "email": "admin@gmail.com",
+                "password": "$2a$10$51WXo0l.XAC.Iq17r2mgbOfaG7JeovZp4QCmKKNDAbzdJh.nLwON2",
+                "role": "admin",
+                "createdAt": "2020-11-10T04:47:44.878Z",
+                "updatedAt": "2020-11-10T04:47:44.878Z"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Playstation 4",
+            "image_url": "https://www.citypng.com/public/uploads/preview/-11591925787cggjhepdvq.png",
+            "price": 4000000,
+            "stock": 13,
+            "userId": 3,
+            "createdAt": "2020-11-10T04:50:25.905Z",
+            "updatedAt": "2020-11-10T04:50:25.905Z",
+            "User": {
+                "id": 3,
+                "email": "admin@gmail.com",
+                "password": "$2a$10$51WXo0l.XAC.Iq17r2mgbOfaG7JeovZp4QCmKKNDAbzdJh.nLwON2",
+                "role": "admin",
+                "createdAt": "2020-11-10T04:47:44.878Z",
+                "updatedAt": "2020-11-10T04:47:44.878Z"
+            }
+        }
+    ],
+    "loggedInUser": "admin@gmail.com"
+}`
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ error : "Server is busy" }`
+

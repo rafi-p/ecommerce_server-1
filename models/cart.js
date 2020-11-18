@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       validate: {
         isMinus(value) {
-          if(value < 0) {
-            throw new Error ('Quantity cannot be below zero')
+          if(value < 1) {
+            throw new Error ('Quantity cannot be zero')
           }
         }
       }

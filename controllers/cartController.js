@@ -4,6 +4,15 @@ const { sequelize } = require('../models/index')
 const { queryInterface } = sequelize
 
 class CartController {
+    static async productList(req, res, next) {
+        try {
+            const productList = await Product.findAll({order: [['id', 'ASC']], include: [User]})
+            res.status(200).json({productList})
+
+        } catch (error) {
+            next(error)
+        }
+    }
     static async cartAdd(req, res, next) {
         try {
             let productId = +req.params.id
@@ -97,27 +106,14 @@ class CartController {
     }
     static async cartCheckout(req, res, next) {
         try {
-            const cartList = await Cart.findAll({order: [['id', 'DESC']], userId: req.loggedInUser.id, include:[Product]})
+            const cartList = await Cart.findAll({order: [['id', 'DESC']], where:{userId: req.loggedInUser.id}, include:[Product]})
 
-            const product = cartList.filter(el => {
-                console.log(`${el.Product.stock} - ${el.quantity}`, el.id, el.userId)
-                // console.log(el.userId, req.loggedInUser.id)
-                if(el.userId === req.loggedInUser.id) {
-                    // console.log(el.userId, req.loggedInUser.id)
-                    // console.log(el.Product)
-                    el.Product.stock = el.Product.stock - el.quantity
-                    return el.Product
-                }
-
-            })
-            console.log(product, 'ini product')
-            product.forEach(el => {
-                // console.log(el)
+            cartList.forEach(el => {
+                el.Product.stock = el.Product.stock - el.quantity
                 queryInterface.bulkUpdate('Products', {stock: el.Product.stock}, {id: el.Product.id})
             })
             queryInterface.bulkDelete('Carts', {userId: req.loggedInUser.id})
             res.status(200).json({ message: 'Checkout success' })
-
 
         } catch (error) {
             next(error)
