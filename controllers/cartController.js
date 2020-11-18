@@ -99,15 +99,21 @@ class CartController {
         try {
             const cartList = await Cart.findAll({order: [['id', 'DESC']], userId: req.loggedInUser.id, include:[Product]})
 
-            const product = cartList.map(el => {
-                console.log(`${el.Product.stock} - ${el.quantity}`, el.id)
-                el.Product.stock = el.Product.stock - el.quantity
-                return el.Product
-            })
+            const product = cartList.filter(el => {
+                console.log(`${el.Product.stock} - ${el.quantity}`, el.id, el.userId)
+                // console.log(el.userId, req.loggedInUser.id)
+                if(el.userId === req.loggedInUser.id) {
+                    // console.log(el.userId, req.loggedInUser.id)
+                    // console.log(el.Product)
+                    el.Product.stock = el.Product.stock - el.quantity
+                    return el.Product
+                }
 
+            })
+            console.log(product, 'ini product')
             product.forEach(el => {
-                console.log(el)
-                queryInterface.bulkUpdate('Products', {stock: el.stock}, {id: el.id})
+                // console.log(el)
+                queryInterface.bulkUpdate('Products', {stock: el.Product.stock}, {id: el.Product.id})
             })
             queryInterface.bulkDelete('Carts', {userId: req.loggedInUser.id})
             res.status(200).json({ message: 'Checkout success' })
