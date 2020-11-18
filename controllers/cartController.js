@@ -109,7 +109,7 @@ class CartController {
                 console.log(el)
                 queryInterface.bulkUpdate('Products', {stock: el.stock}, {id: el.id})
             })
-            queryInterface.bulkDelete('Carts')
+            queryInterface.bulkDelete('Carts', {userId: req.loggedInUser.id})
             res.status(200).json({ message: 'Checkout success' })
 
 
