@@ -60,7 +60,7 @@ class CartController {
     static async cartList(req, res, next) {
         try {
             const cartList = await Cart.findAll({order: [['id', 'DESC']], where:{userId: req.loggedInUser.id}, include:[Product]})
-            res.status(200).json({cartList})
+            res.status(200).json({cartList, email: req.loggedInUser.email})
 
         } catch (error) {
             next(error)

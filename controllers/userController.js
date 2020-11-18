@@ -7,7 +7,6 @@ class UserController {
         try {
             const { email, password } = req.body
             const user = await User.findOne({where: {email: email}})
-
             if(!email && !password ) {
                 throw { name: 'Invalid Input'}
             } else {

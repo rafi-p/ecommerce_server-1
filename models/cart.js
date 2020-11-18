@@ -27,8 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       }
-    },
-    status: DataTypes.BOOLEAN
+    }
   }, {
     sequelize,
     modelName: 'Cart',
